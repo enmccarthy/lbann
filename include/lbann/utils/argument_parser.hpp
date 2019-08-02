@@ -270,14 +270,6 @@ public:
 
   /** @brief Assert that all required components are set properly.
    *
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> b8bbab8... add argument parser class
-=======
-
->>>>>>> 6bab6bc... argument parser compiles
    *  This should be called sometime after parse_no_finalize() and
    *  before using the values. This is implicitly called by parse().
    *
@@ -404,6 +396,7 @@ inline size_t argument_parser::add_required_argument(
     {
       auto result = clara::detail::convertInto(
         value, utils::any_cast<T&>(param_ref));
+        value, any_cast<T&>(param_ref));
       if (result)
         required_.erase(name);
       return result;
