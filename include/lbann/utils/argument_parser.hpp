@@ -28,7 +28,6 @@
 #define LBANN_UTILS_ARGUMENT_PARSER_HPP_INCLUDED
 
 #include "lbann/utils/any.hpp"
-
 #include <clara.hpp>
 
 #include <initializer_list>
@@ -271,7 +270,10 @@ public:
 
   /** @brief Assert that all required components are set properly.
    *
+<<<<<<< HEAD
 
+=======
+>>>>>>> b8bbab8... add argument parser class
    *  This should be called sometime after parse_no_finalize() and
    *  before using the values. This is implicitly called by parse().
    *
