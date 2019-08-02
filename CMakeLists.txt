@@ -175,7 +175,7 @@ include(SetupCXX)
 
 # Required dependencies
 find_package(Threads REQUIRED)
-
+find_package(Clara REQUIRED)
 find_package(CEREAL NO_MODULE
   HINTS ${CEREAL_DIR} $ENV{CEREAL_DIR}
   PATH_SUFFIXES share/cmake/cereal
@@ -530,7 +530,11 @@ endif ()
 
 # Use the IMPORTED targets when possible.
 target_link_libraries(lbann PUBLIC LbannProto)
+<<<<<<< HEAD
 target_link_libraries(lbann PUBLIC Threads::Threads)
+=======
+target_link_libraries(lbann PUBLIC clara::clara)
+>>>>>>> c92c205... argument parser compiles
 target_link_libraries(lbann PUBLIC cereal)
 target_link_libraries(lbann PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(lbann PUBLIC MPI::MPI_CXX)
