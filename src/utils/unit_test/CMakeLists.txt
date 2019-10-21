@@ -3,6 +3,8 @@ set_full_path(_DIR_LBANN_CATCH2_TEST_FILES
   argument_parser_test.cpp
   beta_distribution_test.cpp
   factory_test.cpp
+  from_string_test.cpp
+  hash_test.cpp
   image_test.cpp
   random_test.cpp
   type_erased_matrix_test.cpp
