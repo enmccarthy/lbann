@@ -30,20 +30,22 @@
 #include "lbann/proto/proto_common.hpp"
 #include "lbann/utils/protobuf_utils.hpp"
 #include "lbann/data_store/data_store_conduit.hpp"
-
+#include "lbann/utils/argument_parser.hpp"
 #include <lbann.pb.h>
 #include <model.pb.h>
-
+#include "lbann/utils/environment_variable.hpp"
 #include <cstdlib>
 
 using namespace lbann;
-
+using ENV = lbann::utils::EnvVariable<>;
+lbann::utils::argument_parser args;
 int main(int argc, char *argv[]) {
   std::cerr << "Starting LBANN" << std::endl;
   int random_seed = lbann_default_random_seed;
   world_comm_ptr comm = initialize(argc, argv, random_seed);
   const bool master = comm->am_world_master();
-
+  // Add options for parallel HDF5 tuning
+  args.add_option("enable_par_hdf5", {"-p"},ENV("OLD_ENV_HERE"), "Enable parallel hdf5",1);
   if (master) {
     std::cout << "\n\n==============================================================\n"
               << "STARTING lbann with this command line:\n";
