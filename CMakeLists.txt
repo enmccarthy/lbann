@@ -530,15 +530,8 @@ endif ()
 
 # Use the IMPORTED targets when possible.
 target_link_libraries(lbann PUBLIC LbannProto)
-<<<<<<< HEAD
 target_link_libraries(lbann PUBLIC Threads::Threads)
-<<<<<<< HEAD
 target_link_libraries(lbann PUBLIC clara::clara)
-=======
-=======
-target_link_libraries(lbann PUBLIC clara::clara)
->>>>>>> argument parser compiles
->>>>>>> 6236c86... argument parser compiles
 target_link_libraries(lbann PUBLIC cereal)
 target_link_libraries(lbann PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(lbann PUBLIC MPI::MPI_CXX)

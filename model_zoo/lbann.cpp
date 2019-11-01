@@ -37,15 +37,24 @@
 #include <cstdlib>
 
 using namespace lbann;
-using ENV = lbann::utils::EnvVariable<>;
-lbann::utils::argument_parser args;
+
 int main(int argc, char *argv[]) {
   std::cerr << "Starting LBANN" << std::endl;
   int random_seed = lbann_default_random_seed;
   world_comm_ptr comm = initialize(argc, argv, random_seed);
   const bool master = comm->am_world_master();
+  lbann::utils::argument_parser args = global_argument_parser();
   // Add options for parallel HDF5 tuning
-  args.add_option("enable_par_hdf5", {"-p"},ENV("OLD_ENV_HERE"), "Enable parallel hdf5",1);
+  
+  args.add_flag("disable_mpio_hdf5", {"-dh", "--disable_mpio_hdf5"},
+      lbann::utils::ENV("DATA_READER_HDF5_DISABLE_MPI_IO"), 
+      "Disable parallel hdf5");
+  args.add_flag("coll_metadata", {"-cm", "--coll_metadata"},
+      lbann::utils::ENV("COLL_METADATA"), "Use collective metadata calls");
+  args.add_flag("sieve_buf", {"-sb", "--sieve_buf"}, 
+      lbann::utils::ENV("SIEVE_BUF"), "Set the sieve buf, to change the size set x");
+  args.parse(argc, argv);
+
   if (master) {
     std::cout << "\n\n==============================================================\n"
               << "STARTING lbann with this command line:\n";
